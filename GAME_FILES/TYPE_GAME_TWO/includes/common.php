@@ -86,14 +86,6 @@ require 'includes/classes/Universe.class.php';
 
 require 'includes/classes/class.theme.php';
 require 'includes/classes/class.template.php';
-require 'includes/vars.php';
-
-// Say Browsers to Allow ThirdParty Cookies (Thanks to morktadela)
-HTTP::sendHeader('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
-define('AJAX_REQUEST', HTTP::_GP('ajax', 0));
-
-$THEME		= new Theme();
-
 if (MODE === 'INSTALL')
 {
 	return;
@@ -102,6 +94,13 @@ if (MODE === 'INSTALL')
 if(!file_exists('includes/config.php')) {
 	HTTP::redirectTo('install/index.php');
 }
+require 'includes/vars.php';
+
+// Say Browsers to Allow ThirdParty Cookies (Thanks to morktadela)
+HTTP::sendHeader('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
+define('AJAX_REQUEST', HTTP::_GP('ajax', 0));
+
+$THEME		= new Theme();
 
 if(defined('DATABASE_VERSION') && DATABASE_VERSION === 'OLD')
 {
