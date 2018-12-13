@@ -26,7 +26,7 @@
  * @link http://2moons.cc/
  */
 
-if ($USER['id'] != ROOT_USER || $_GET['sid'] != session_id()) exit;
+if ($USER['id'] != ROOT_USER) exit;
 
 function ShowResetPage()
 {
@@ -81,7 +81,7 @@ function ShowResetPage()
 		// Players and Planets
 		
 		if ($_POST['players'] == 'on'){
-			$ID	= $GLOBALS['DATABASE']->getFirstCell("SELECT `id_owner` FROM ".PLANETS." WHERE `universe` = ".Universe::getEmulated()." AND `galaxy` = '1' AND `system` = '1' AND `planet` = '1';");
+			$ID	= 1;
 			$GLOBALS['DATABASE']->multi_query("DELETE FROM ".USERS." WHERE `universe` = ".Universe::getEmulated()." AND `id` != '".$ID."';DELETE FROM ".PLANETS." WHERE `universe` = ".Universe::getEmulated()." AND `id_owner` != '".$ID."';");
 		}
 		
@@ -142,7 +142,7 @@ function ShowResetPage()
 			$GLOBALS['DATABASE']->query("DELETE FROM ".BUDDY." WHERE `universe` = ".Universe::getEmulated().";");
 
 		if ($_POST['alliances']	==	'on')
-			$GLOBALS['DATABASE']->multi_query("DELETE FROM ".ALLIANCE." WHERE `ally_universe` = '".Universe::getEmulated()."';UPDATE ".USERS." SET `ally_id` = '0', `ally_register_time` = '0', `ally_rank_id` = '0' WHERE `universe` = ".Universe::getEmulated().";");
+			$GLOBALS['DATABASE']->multi_query("DELETE FROM ".ALLIANCE." WHERE `ally_universe` = '".Universe::getEmulated()."' AND ally_id != 1;UPDATE ".USERS." SET `ally_id` = '0', `ally_register_time` = '0', `ally_rank_id` = '0' WHERE `universe` = ".Universe::getEmulated()." AND ally_id != 1;");
 
 		if ($_POST['fleets']	==	'on')
 			$GLOBALS['DATABASE']->query("DELETE FROM ".FLEETS." WHERE `fleet_universe` = '".Universe::getEmulated()."';");
