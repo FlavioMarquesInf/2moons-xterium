@@ -35,7 +35,7 @@ class StatisticCronjob implements CronjobTask
 	{
 		
 		if(Config::get()->stat_last_update < TIMESTAMP){
-		require 'includes/classes/class.statbuilder.php';
+		require_once 'includes/classes/class.statbuilder.php';
 		$stat	= new Statbuilder();
 		$stat->MakeStats();
 		

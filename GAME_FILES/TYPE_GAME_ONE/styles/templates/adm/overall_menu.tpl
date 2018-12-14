@@ -144,6 +144,7 @@
 										<li{if $pageactiveshow == "statsconf"} class="active"{/if}><a href="admin.php?page=statsconf">Statistics Settings</a></li>
 										<li{if $pageactiveshow == "premium"} class="active"{/if}><a href="admin.php?page=premium">Premium Settings</a></li>
 										<li{if $pageactiveshow == "cronjob"} class="active"{/if}><a href="admin.php?page=cronjob">CronJob Settings</a></li>
+										<li{if $pageactiveshow == "reset"} class="active"{/if}><a href="?page=reset&amp;sid={$sid}">Reset Game</a></li>
 										<!--<li><a href="paiement_settings.php">Paiement Settings</a></li>-->
 									</ul>
 								</li>
